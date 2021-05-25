@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--配置 结构外形-->
+<configuration>
+    <!--mybatis数据库环境的配置-->
+    <!--环境外界-->
+    <environments default="development1">
+        <!--数据库环境1情况配置-->
+        <environment id="development1">
+            <!--数据库使用事务类型：JDBC-->
+            <transactionManager type="JDBC"/>
+            <!--数据库连接信息配置，根据本机连接数据库的情况，酌情修改-->
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/exam?useUnicode=true&amp;characterEncoding=UTF8"/>
+                <property name="username" value="root"/>
+                <property name="password" value=""/>
+            </dataSource>
+        </environment>
+
+        <!--数据库环境2情况配置-->
+        <environment id="development2">
+            <transactionManager type="JDBC"/>
+            <!--数据库连接信息配置，根据本机连接数据库的情况，酌情修改-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--配置映射信息：全局配置文件对于单个表配置文件的查找路径-->
+    <mappers>
+        <!--将程序员编写单个表sql所在的配置文件，注册到全局配置文件中，以便于sql映射
+        resource="sql配置文件的引用名"
+        -->
+        <mapper resource="deptMapper.xml"/>
+    </mappers>
+</configuration>

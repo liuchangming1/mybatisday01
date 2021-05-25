@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+namespace:其实执行一个表对应的dao接口，提供的sql其实映射dao接口对应的方法实现
+便于理解和关联jdbc技术，建议namespace填充dao接口完全引用名（限定名）：
+    包名.类名  cn.kgc.dao.DeptDao
+-->
+<mapper namespace="cn.kgc.dao.DeptDao">
+    <!--配置sql语句：select配置查询语句-->
+    <!--
+        id:用来唯一区分某一个sql语句的编号。保证不重复
+        建议id填充的值接口定义的方法
+        id:selectAll,对应DeptDao中selectAll的实现
+
+        resultType:指定sql查询结果类型
+        resultType：不需要关心返回值是集合还是单个对象，只关心查询语句对应的集合或者实体类泛型类型
+        resultType:其实就是实体类类名
+        ///new BeanListHandler(Dept.class)
+    -->
+    <select id="selectAll"  resultType="cn.kgc.domain.Dept">
+    	select deptNo,dName,loc from dept;
+  	</select>
+
+    <insert id="insert"  parameterType="dept" >
+        insert into dept values(#{deptNo},#{dName},#{loc})
+    </insert>
+
+    <!--<update id="">
+
+    </update>
+
+    <delete id="">
+
+    </delete>-->
+</mapper>
